@@ -30,6 +30,12 @@
       <p id="proximos-vazio" class="vazio" hidden>Nenhum evento futuro por aqui.</p>
     </section>
 
+    <section class="card" id="card-gerenciar" hidden>
+      <h2>Gerenciar eventos</h2>
+      <ul id="lista-gerenciar" class="lista-eventos"></ul>
+      <p id="gerenciar-vazio" class="vazio" hidden>Nenhum evento futuro.</p>
+    </section>
+
     <section class="card">
       <div class="calendario-topo">
         <h2>Calendário</h2>
@@ -65,16 +71,11 @@
         </label>
       </div>
 
-      <div class="linha">
-        <label>
-          Duração (min)
-          <input name="duracao" type="number" min="5" step="5" value="60" />
-        </label>
-        <label>
-          Senha da turma
-          <input name="senha" type="password" autocomplete="off" placeholder="Se tiver" />
-        </label>
-      </div>
+      <label>
+        Duração (min)
+        <input name="duracao" type="number" min="5" step="5" value="60" />
+      </label>
+      <input type="hidden" name="id" />
 
       <label>
         Descrição

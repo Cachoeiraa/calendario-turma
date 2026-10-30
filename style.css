@@ -168,14 +168,14 @@ main {
 
 /* ---- Próximos eventos ---- */
 
-#lista-proximos {
+#lista-proximos, .lista-eventos {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-#lista-proximos li {
+#lista-proximos li, .lista-eventos li {
   display: flex;
   align-items: center;
   gap: 0.9rem;
@@ -184,7 +184,7 @@ main {
   border-radius: 8px;
 }
 
-#lista-proximos .data {
+#lista-proximos .data, .lista-eventos .data {
   min-width: 62px;
   text-align: center;
   font-weight: 700;
@@ -193,7 +193,7 @@ main {
   line-height: 1.2;
 }
 
-#lista-proximos .data small {
+#lista-proximos .data small, .lista-eventos .data small {
   display: block;
   font-weight: 400;
   color: var(--texto-suave);
@@ -201,7 +201,25 @@ main {
   font-size: 0.7rem;
 }
 
-#lista-proximos .nome { flex: 1; }
+#lista-proximos .nome, .lista-eventos .nome { flex: 1; }
+
+.acoes-item { display: flex; gap: 0.4rem; }
+
+.btn-mini {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid var(--borda);
+  cursor: pointer;
+  background: var(--fundo);
+  color: var(--texto);
+}
+
+.btn-mini:disabled { opacity: 0.6; cursor: wait; }
+.btn-editar { color: var(--verde-escuro); }
+.btn-excluir { color: var(--vermelho); }
 
 .badge {
   font-size: 0.78rem;
@@ -290,6 +308,6 @@ footer {
 footer a { color: var(--verde); }
 
 @media (max-width: 600px) {
-  #lista-proximos li { flex-wrap: wrap; }
+  #lista-proximos li, .lista-eventos li { flex-wrap: wrap; }
   .calendario-frame { height: 60vh; }
 }
