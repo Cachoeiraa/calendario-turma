@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calendário da Turma</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1 id="titulo">Calendário da Turma</h1>
+    <p class="subtitulo">Provas, trabalhos e eventos &mdash; adicionados pela própria turma</p>
+    <a id="link-seguir" class="btn-seguir" href="#" target="_blank" rel="noopener">
+      + Seguir este calendário no meu Google
+    </a>
+  </header>
+
+  <div id="aviso-config" class="aviso" hidden>
+    <h2>Calendário ainda não configurado</h2>
+    <p>Abra o arquivo <code>app.js</code> e preencha <code>calendarId</code> com o ID da sua agenda do Google.</p>
+  </div>
+
+  <main>
+    <section class="card" id="card-proximos" hidden>
+      <h2>Próximos eventos</h2>
+      <ul id="lista-proximos"></ul>
+      <p id="proximos-vazio" class="vazio" hidden>Nenhum evento futuro por aqui.</p>
+    </section>
+
+    <section class="card">
+      <div class="calendario-topo">
+        <h2>Calendário</h2>
+        <div class="modos">
+          <button data-modo="MONTH" class="ativo">Mês</button>
+          <button data-modo="WEEK">Semana</button>
+          <button data-modo="AGENDA">Agenda</button>
+        </div>
+      </div>
+      <div class="calendario-frame">
+        <iframe id="gcal" title="Calendário da turma" loading="lazy"></iframe>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Para adicionar um evento, abra o
+      <a href="https://calendar.google.com" target="_blank" rel="noopener">Google Agenda</a>,
+      crie o evento e escolha o calendário da turma &mdash; ele aparece aqui automaticamente.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
