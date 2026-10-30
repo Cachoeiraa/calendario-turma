@@ -8,7 +8,7 @@ const CONFIG = {
   nomeTurma: "Calendário da Turma", // ex.: "3º A — Informática"
   calendarId: "e08a2e0b458f1e160be4e56aa8820316753da6ea031e66bef9a78d2b585e9dc5@group.calendar.google.com",
   apiKey: "",
-  scriptUrl: "", // URL do Apps Script (/exec) — habilita o botão "+ Criar evento"
+  scriptUrl: "https://script.google.com/macros/s/AKfycbzDtXxzfNb8pzTnab0MMxxgUIfjiIFOatjb-hMOkZTJ_aTRXompfCpaPJJqsyOSd3MC/exec", // URL do Apps Script (/exec) — habilita o botão "+ Criar evento"
   timeZone: "America/Sao_Paulo",
 };
 // ================================================
