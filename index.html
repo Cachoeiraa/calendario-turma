@@ -10,9 +10,12 @@
   <header>
     <h1 id="titulo">Calendário da Turma</h1>
     <p class="subtitulo">Provas, trabalhos e eventos &mdash; adicionados pela própria turma</p>
-    <a id="link-seguir" class="btn-seguir" href="#" target="_blank" rel="noopener">
-      + Seguir este calendário no meu Google
-    </a>
+    <div class="acoes">
+      <button id="btn-novo" class="btn-seguir" type="button">+ Criar evento</button>
+      <a id="link-seguir" class="btn-seguir" href="#" target="_blank" rel="noopener">
+        Seguir este calendário no meu Google
+      </a>
+    </div>
   </header>
 
   <div id="aviso-config" class="aviso" hidden>
@@ -42,11 +45,56 @@
     </section>
   </main>
 
+  <dialog id="modal-evento">
+    <form id="form-evento" method="dialog">
+      <h2>Novo evento</h2>
+
+      <label>
+        Título *
+        <input name="titulo" type="text" required placeholder="Ex.: Prova de Matemática" />
+      </label>
+
+      <div class="linha">
+        <label>
+          Data *
+          <input name="data" type="date" required />
+        </label>
+        <label>
+          Horário
+          <input name="hora" type="time" />
+        </label>
+      </div>
+
+      <div class="linha">
+        <label>
+          Duração (min)
+          <input name="duracao" type="number" min="5" step="5" value="60" />
+        </label>
+        <label>
+          Senha da turma
+          <input name="senha" type="password" autocomplete="off" placeholder="Se tiver" />
+        </label>
+      </div>
+
+      <label>
+        Descrição
+        <textarea name="descricao" rows="3" placeholder="Matéria, conteúdo, sala..."></textarea>
+      </label>
+
+      <p class="dica">Sem horário, o evento fica como "dia inteiro".</p>
+      <p id="form-feedback" class="feedback" hidden></p>
+
+      <div class="botoes">
+        <button type="button" id="btn-cancelar" class="btn-sec">Cancelar</button>
+        <button type="submit" id="btn-enviar">Adicionar</button>
+      </div>
+    </form>
+  </dialog>
+
   <footer>
     <p>
-      Para adicionar um evento, abra o
-      <a href="https://calendar.google.com" target="_blank" rel="noopener">Google Agenda</a>,
-      crie o evento e escolha o calendário da turma &mdash; ele aparece aqui automaticamente.
+      Clique em "+ Criar evento" pra adicionar provas, trabalhos e eventos —
+      aparece no calendário automaticamente.
     </p>
   </footer>
 

@@ -8,6 +8,7 @@ const CONFIG = {
   nomeTurma: "Calendário da Turma", // ex.: "3º A — Informática"
   calendarId: "e08a2e0b458f1e160be4e56aa8820316753da6ea031e66bef9a78d2b585e9dc5@group.calendar.google.com",
   apiKey: "",
+  scriptUrl: "", // URL do Apps Script (/exec) — habilita o botão "+ Criar evento"
   timeZone: "America/Sao_Paulo",
 };
 // ================================================
@@ -132,3 +133,58 @@ async function carregarProximos() {
 }
 
 carregarProximos();
+
+// ---- Criar evento pelo site (via Apps Script) ----
+
+const modal = document.getElementById("modal-evento");
+const form = document.getElementById("form-evento");
+const btnNovo = document.getElementById("btn-novo");
+const btnCancelar = document.getElementById("btn-cancelar");
+const btnEnviar = document.getElementById("btn-enviar");
+const feedback = document.getElementById("form-feedback");
+
+btnNovo.addEventListener("click", () => {
+  if (!CONFIG.scriptUrl) {
+    alert(
+      "O botão de criar evento ainda não foi configurado.\n" +
+      "Falta colar a URL do Apps Script em scriptUrl no arquivo app.js."
+    );
+    return;
+  }
+  feedback.hidden = true;
+  form.reset();
+  modal.showModal();
+});
+
+btnCancelar.addEventListener("click", () => modal.close());
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  btnEnviar.disabled = true;
+  btnEnviar.textContent = "Adicionando...";
+  feedback.hidden = false;
+  feedback.className = "feedback";
+  feedback.textContent = "";
+
+  try {
+    // no-cors: o Apps Script não libera leitura da resposta, mas o POST chega normal
+    await fetch(CONFIG.scriptUrl, {
+      method: "POST",
+      mode: "no-cors",
+      body: new URLSearchParams(new FormData(form)),
+    });
+
+    feedback.classList.add("ok");
+    feedback.textContent = "Evento adicionado! Atualizando o calendário...";
+    setTimeout(() => {
+      modal.close();
+      iframe.src = iframe.src; // recarrega pra mostrar o evento novo
+      carregarProximos();
+    }, 1500);
+  } catch {
+    feedback.classList.add("erro");
+    feedback.textContent = "Não deu pra enviar. Confere sua internet e tenta de novo.";
+    btnEnviar.disabled = false;
+    btnEnviar.textContent = "Adicionar";
+  }
+});
